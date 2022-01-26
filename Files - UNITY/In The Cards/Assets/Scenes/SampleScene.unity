@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Playing Card
       objectReference: {fileID: 0}
+    - target: {fileID: 5279327840398116154, guid: aeafc4b7612cf0f4d85401fc1f1dbd55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeafc4b7612cf0f4d85401fc1f1dbd55, type: 3}
 --- !u!1 &1123254077
@@ -402,3 +406,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859d550cb453b95448d9ccc4c6c0323c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playingCardPrefab: {fileID: 5279327840398116154, guid: aeafc4b7612cf0f4d85401fc1f1dbd55, type: 3}

@@ -8,9 +8,17 @@ public static class ExtensionMethods
 {
     public static List<T> Shuffle<T>(this List<T> list)
     {
-        List<T> output = new List<T>();
+        Random rnd = new Random();
 
-        //TODO: Define the behaviour of this shuffle function
+        List<T> output = new List<T>();
+        List<T> oldList = new List<T>(list);
+
+        while (oldList.Count > 0)
+        {
+            T pick = oldList[rnd.Next(0, oldList.Count)];
+            output.Add(pick);
+            oldList.Remove(pick);
+        }
 
         return output;
     }
