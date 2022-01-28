@@ -13,11 +13,14 @@ public class GameManager : MonoBehaviour
     {
         CardDeckDataModel deck = new CardDeckDataModel(4);
 
-        string drawn =  deck.DrawCard();
-        print(drawn);
-
-        GameObject a = Instantiate(playingCardPrefab, Vector3.zero, Quaternion.identity);
-        PlayingCard pc = a.GetComponent<PlayingCard>();
-        pc.InitilizeCard(drawn);
+        List<string> draws = deck.DrawCards(5);
+       
+        foreach (string d in draws)
+        {
+            print(d);
+            GameObject a = Instantiate(playingCardPrefab, Vector3.zero, Quaternion.identity);
+            PlayingCard pc = a.GetComponent<PlayingCard>();
+            pc.InitilizeCard(d); 
+        }
     }
 }

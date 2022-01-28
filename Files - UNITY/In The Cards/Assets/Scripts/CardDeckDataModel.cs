@@ -49,9 +49,16 @@ public class CardDeckDataModel
         deckContents = new Queue<string>(generatedCards.ToArray());
     }
 
-    public string DrawCard()
+    public List<string> DrawCards(int numberOfDraws)
     {
-        return deckContents.Dequeue();
+        List<string> output = new List<string>();
+
+        for (int i = 0; i < numberOfDraws; i++)
+        {
+            output.Add(deckContents.Dequeue());
+        }
+
+        return output;
     }
 
     public override string ToString()

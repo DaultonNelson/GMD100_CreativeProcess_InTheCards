@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -10,15 +10,30 @@ public class PlayingCard : MonoBehaviour
     public TextMeshPro cardSuite002;
     public TextMeshPro cardValue001;
     public TextMeshPro cardValue002;
+    public TextMeshPro cardFaceText;
 
     public int cardNumericValue = 0;
     #endregion
 
     public void InitilizeCard(string cardInfo)
     {
-        cardSuite001.text = cardInfo[0].ToString();
-        cardSuite002.text = cardInfo[0].ToString();
+        //Suites
+        char suite = cardInfo[0];
 
+        cardSuite001.text = suite.ToString();
+        cardSuite002.text = suite.ToString();
+
+        //If suite is hearts or diamonds, make text red
+        if (suite == '♥' || suite == '♦')
+        {
+            cardSuite001.color = Color.red;
+            cardSuite002.color = Color.red;
+            cardValue001.color = Color.red;
+            cardValue002.color = Color.red;
+            cardFaceText.color = Color.red;
+        }
+
+        //Values
         cardValue001.text = cardInfo[1] == '0' ? "10" : cardInfo[1].ToString();
         cardValue002.text = cardInfo[1] == '0' ? "10" : cardInfo[1].ToString();
 
@@ -29,15 +44,35 @@ public class PlayingCard : MonoBehaviour
         {
             case 'A':
                 cardValue = 11;
+                cardFaceText.text = "A";
                 break;
-            case 'J': case 'Q': case 'K': case '0':
+            case '0':
+                cardValue = 10;
+                FillFaceText(cardValue, suite);
+                break;
+            case 'J':
+                cardValue = 10;
+                break;
+            case 'Q':
+                cardValue = 10;
+                break;
+            case 'K':
                 cardValue = 10;
                 break;
             default:
                 cardValue = int.Parse(stringValue.ToString());
+                FillFaceText(cardValue, suite);
                 break;
         }
 
         cardNumericValue = cardValue;
+    }
+
+    private void FillFaceText(int amt, char suite)
+    {
+        for (int i = 0; i < amt; i++)
+        {
+            cardFaceText.text += suite;
+        }
     }
 }
