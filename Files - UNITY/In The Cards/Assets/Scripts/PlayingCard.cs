@@ -13,10 +13,18 @@ public class PlayingCard : MonoBehaviour
     public TextMeshPro cardFaceText;
 
     public int cardNumericValue = 0;
+
+    public Texture2D jackTexture;
+    public Texture2D queenTexture;
+    public Texture2D kingTexture;
+
+    private Renderer cardRenderer;
     #endregion
 
     public void InitilizeCard(string cardInfo)
     {
+        cardRenderer = GetComponent<Renderer>();
+
         //Suites
         char suite = cardInfo[0];
 
@@ -52,12 +60,15 @@ public class PlayingCard : MonoBehaviour
                 break;
             case 'J':
                 cardValue = 10;
+                cardRenderer.materials[1].mainTexture = jackTexture;
                 break;
             case 'Q':
                 cardValue = 10;
+                cardRenderer.materials[1].mainTexture = queenTexture;
                 break;
             case 'K':
                 cardValue = 10;
+                cardRenderer.materials[1].mainTexture = kingTexture;
                 break;
             default:
                 cardValue = int.Parse(stringValue.ToString());
