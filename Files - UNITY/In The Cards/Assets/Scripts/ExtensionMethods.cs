@@ -6,6 +6,18 @@ using System.Threading.Tasks;
 
 public static class ExtensionMethods
 {
+    /// <summary>
+    /// Shuffles a list of T
+    /// </summary>
+    /// <typeparam name="T">
+    /// A generic type, can be anything
+    /// </typeparam>
+    /// <param name="list">
+    /// The list to shuffle
+    /// </param>
+    /// <returns>
+    /// A shuffled list
+    /// </returns>
     public static List<T> Shuffle<T>(this List<T> list)
     {
         Random rnd = new Random();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Solely for testing for now
 public class GameManager : MonoBehaviour
 {
     #region Variables

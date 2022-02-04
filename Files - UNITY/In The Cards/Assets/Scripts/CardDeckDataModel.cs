@@ -9,6 +9,14 @@ public class CardDeckDataModel
 {
     #region Variables
     /// <summary>
+    /// Returns the amount of cards left in the deck.
+    /// </summary>
+    public int CardCount { 
+        get { return deckContents.Count; }
+        private set { }
+    }
+
+    /// <summary>
     /// A Queue, which is a FIFO (First In, First Out) collection.  Perfect for drawing playing cards
     /// </summary>
     private Queue<string> deckContents = new Queue<string>();
@@ -49,6 +57,15 @@ public class CardDeckDataModel
         deckContents = new Queue<string>(generatedCards.ToArray());
     }
 
+    /// <summary>
+    /// Draws an amount of cards from the deck
+    /// </summary>
+    /// <param name="numberOfDraws">
+    /// The amount of cards to draw
+    /// </param>
+    /// <returns>
+    /// A collection of drawn card values and suites, each packed inside a two character string
+    /// </returns>
     public List<string> DrawCards(int numberOfDraws)
     {
         List<string> output = new List<string>();

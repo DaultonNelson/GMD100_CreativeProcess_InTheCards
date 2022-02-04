@@ -6,21 +6,57 @@ using TMPro;
 public class PlayingCard : MonoBehaviour
 {
     #region Variables
+    /// <summary>
+    /// Represents one card suit text component.
+    /// </summary>
     public TextMeshPro cardSuite001;
+    /// <summary>
+    /// Represents a second card suit text component.
+    /// </summary>
     public TextMeshPro cardSuite002;
+    /// <summary>
+    /// Represents one card value text component.
+    /// </summary>
     public TextMeshPro cardValue001;
+    /// <summary>
+    /// Represents a second card value text component.
+    /// </summary>
     public TextMeshPro cardValue002;
+    /// <summary>
+    /// Represents one card value face component.
+    /// </summary>
     public TextMeshPro cardFaceText;
 
+    /// <summary>
+    /// The numeric value of the card.
+    /// </summary>
     public int cardNumericValue = 0;
 
+    /// <summary>
+    /// The texture that represents the Jack face.
+    /// </summary>
     public Texture2D jackTexture;
+    /// <summary>
+    /// The texture that represents the Queen face.
+    /// </summary>
     public Texture2D queenTexture;
+    /// <summary>
+    /// The texture that represents the King face.
+    /// </summary>
     public Texture2D kingTexture;
 
+    /// <summary>
+    /// The Renderer component attached to the card
+    /// </summary>
     private Renderer cardRenderer;
     #endregion
 
+    /// <summary>
+    /// Initilizes the Playing card
+    /// </summary>
+    /// <param name="cardInfo">
+    /// A two character string used to determine card value and display
+    /// </param>
     public void InitilizeCard(string cardInfo)
     {
         cardRenderer = GetComponent<Renderer>();
@@ -79,6 +115,15 @@ public class PlayingCard : MonoBehaviour
         cardNumericValue = cardValue;
     }
 
+    /// <summary>
+    /// Fills the card's face with suites
+    /// </summary>
+    /// <param name="amt">
+    /// The amount of suites that will fill the face
+    /// </param>
+    /// <param name="suite">
+    /// The type of suite that will feed the face
+    /// </param>
     private void FillFaceText(int amt, char suite)
     {
         for (int i = 0; i < amt; i++)
