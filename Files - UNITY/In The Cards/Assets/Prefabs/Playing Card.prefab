@@ -445,7 +445,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5279327840398116154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a7dc04aa9de0445a2627111ba1a456, type: 3}
+  m_Script: {fileID: 11500000, guid: c707b74cb4f0bff4b87cf7d6eb7f5bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardSuite001: {fileID: 2872717739852155974}
@@ -453,7 +453,6 @@ MonoBehaviour:
   cardValue001: {fileID: 2444256413120960783}
   cardValue002: {fileID: 7084107847051954098}
   cardFaceText: {fileID: 5032806347621696952}
-  cardNumericValue: 0
   jackTexture: {fileID: 2800000, guid: 386fc9d48b665e646b9a716f2034164d, type: 3}
   queenTexture: {fileID: 2800000, guid: 84f9b1bcea6bdb04c90a785a124c79bd, type: 3}
   kingTexture: {fileID: 2800000, guid: a7c951d3967d01a4f8847aba26e193df, type: 3}

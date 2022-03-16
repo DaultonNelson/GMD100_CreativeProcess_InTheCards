@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CardDealer : MonoBehaviour
 {
     #region Variables
@@ -26,11 +27,18 @@ public class CardDealer : MonoBehaviour
     /// An enum of directions that the playing card can be thrown in.  Purely for the editor
     /// </summary>
     public V3Direction throwDirection;
-
     /// <summary>
-    /// The Deck of Cards this deals from (made up of 4 full decks)
+    /// The event that fires once a card is drawn
     /// </summary>
-    private CardDeckDataModel deck = new CardDeckDataModel(4);
+    /// <returns>
+    /// The card value that was drawn
+    /// </returns>
+    public StringEventWrapper OnCardDrawn;
+    
+    /// <summary>
+    /// The Deck of Cards this deals from (made up of 4 full decks, all dealers share one deck)
+    /// </summary>
+    private static CardDeckDataModel deck = new CardDeckDataModel(4);
     /// <summary>
     /// The direction at which the playing card will be thrown
     /// </summary>
@@ -39,7 +47,7 @@ public class CardDealer : MonoBehaviour
 
     private void Start()
     {
-        print(deck.CardCount);
+        //print(name + " " + deck.CardCount);
 
         //Determine push direction by throw direction (lol)
         switch (throwDirection)
@@ -67,24 +75,22 @@ public class CardDealer : MonoBehaviour
                 break;
         }
     }
-
-    void Update()
-    {
-        DealCard();
-    }
-
+    
     /// <summary>
     /// Deals a card
     /// </summary>
-    private void DealCard()
+    public void DealCard()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && deck.CardCount > 0)
+        if (deck.CardCount > 0)
         {
             //Draw one card
             string draw = deck.DrawCards(1)[0];
 
             //Spawn playing card
             GameObject a = Instantiate(playingCard, transform.position, Quaternion.identity);
+
+            //Fire Off Card Drawn Event
+            OnCardDrawn.Invoke(draw);
 
             //Fill out Playing card
             PlayingCard pc = a.GetComponent<PlayingCard>();
@@ -105,7 +111,7 @@ public class CardDealer : MonoBehaviour
             rb.AddForce((dealForce * .01f) * pushDirection, ForceMode.Impulse);
 
             //Check the card count (just in case)
-            print(deck.CardCount);
+            print(name + " " + deck.CardCount);
         }
     }
 }

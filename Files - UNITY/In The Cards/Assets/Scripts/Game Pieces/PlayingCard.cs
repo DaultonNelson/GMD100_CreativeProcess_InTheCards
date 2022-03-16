@@ -28,11 +28,6 @@ public class PlayingCard : MonoBehaviour
     public TextMeshPro cardFaceText;
 
     /// <summary>
-    /// The numeric value of the card.
-    /// </summary>
-    public int cardNumericValue = 0;
-
-    /// <summary>
     /// The texture that represents the Jack face.
     /// </summary>
     public Texture2D jackTexture;
@@ -82,37 +77,29 @@ public class PlayingCard : MonoBehaviour
         cardValue002.text = cardInfo[1] == '0' ? "10" : cardInfo[1].ToString();
 
         char stringValue = cardInfo[1];
-        int cardValue = 0;
 
         switch (stringValue)
         {
             case 'A':
-                cardValue = 11;
                 cardFaceText.text = "A";
                 break;
             case '0':
-                cardValue = 10;
-                FillFaceText(cardValue, suite);
+                FillFaceText(10, suite);
                 break;
             case 'J':
-                cardValue = 10;
                 cardRenderer.materials[1].mainTexture = jackTexture;
                 break;
             case 'Q':
-                cardValue = 10;
                 cardRenderer.materials[1].mainTexture = queenTexture;
                 break;
             case 'K':
-                cardValue = 10;
                 cardRenderer.materials[1].mainTexture = kingTexture;
                 break;
             default:
-                cardValue = int.Parse(stringValue.ToString());
+                int cardValue = int.Parse(stringValue.ToString());
                 FillFaceText(cardValue, suite);
                 break;
         }
-
-        cardNumericValue = cardValue;
     }
 
     /// <summary>
