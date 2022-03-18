@@ -82,6 +82,25 @@ public class BlackJackCanvas : MonoBehaviour
     public GameObject listBoxItem;
 
     /// <summary>
+    /// The Text that displays the game's end result (win/lose)
+    /// </summary>
+    [Header("Result Group")]
+    public TMP_Text gameResultLabel;
+    /// <summary>
+    /// The Text that displays the reason as to why the player got their result
+    /// </summary>
+    public TMP_Text reasonResultLabel;
+    /// <summary>
+    /// The Text that displays the player's earnings post-game
+    /// </summary>
+    public TMP_Text betResultLabel;
+
+    /// <summary>
+    /// A translucent black image that makes everything darker
+    /// </summary>
+    public GameObject translucentBlack;
+
+    /// <summary>
     /// The current score the player has with their drawn cards
     /// </summary>
     private int currentPlayerScore;
@@ -141,7 +160,7 @@ public class BlackJackCanvas : MonoBehaviour
                 {
                     //Valid bet
                     validBet = true;
-                    finalizeBetLabel.color = Color.black;
+                    finalizeBetLabel.color = Color.white;
                     finalizeBetLabel.text = "Press <color=yellow><b>ENTER</b></color> to finalize bet!";
                     betInput.color = Color.green * 0.5f;
                 }
@@ -247,7 +266,8 @@ public class BlackJackCanvas : MonoBehaviour
         else if (currentPlayerScore > 21)
         {
             currentScoreDisplay.color = Color.red;
-            //TODO: Player loses, hand is over 21, start the game over (reset everything) and have player place a new bet
+            //TODO: Player loses, hand is over 21, start the game over and have player place a new bet
+            EndGame("You Lose", "Your Cards Totaled Over 21", 0f);
         }
     }
 
@@ -263,4 +283,40 @@ public class BlackJackCanvas : MonoBehaviour
         currentPlayerScore += incomingScore;
         currentScoreDisplay.text = currentPlayerScore.ToString();
     }
+
+    /// <summary>
+    /// Ends the current game
+    /// </summary>
+    /// <param name="result"> The result of the game </param>
+    /// <param name="reason"> The reason the result was reached </param>
+    /// <param name="betMultiplier"> The bet multiplier that will effect the player's bet </param>
+    public void EndGame(string result, string reason, float betMultiplier)
+    {
+        //Turn important elements on
+        translucentBlack.SetActive(true);
+        gameResultLabel.gameObject.SetActive(true);
+        reasonResultLabel.gameObject.SetActive(true);
+        betResultLabel.gameObject.SetActive(true);
+
+        //TODO: Display results, have player press continue or quit (for now)
+        gameResultLabel.text = result;
+        reasonResultLabel.text = reason;
+        betResultLabel.text = $"Earnings: BET x {betMultiplier:0.00}"; //TODO: equals actual result, apply, clear bets
+    }
+
+    /// <summary>
+    /// Quits the game
+    /// </summary>
+    public void QuitGame()
+    {
+        Debug.Log("Player chooses to quit out of application.", gameObject);
+        Application.Quit();
+    }
+
+    //TODO: Only do these if the player wants to play another game
+    //TODO: General reset of everything
+    //TODO: Clear Cards and bets off the table
+    //TODO: Clear Card List Box
+    //TODO: Affect the player's bet
+    //TODO: Reset dealer's AI
 }
