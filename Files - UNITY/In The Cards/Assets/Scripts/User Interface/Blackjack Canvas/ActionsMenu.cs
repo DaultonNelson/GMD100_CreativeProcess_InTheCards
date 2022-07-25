@@ -9,10 +9,6 @@ public class ActionsMenu : MonoBehaviour
     /// The object that deal's the player's cards
     /// </summary>
     public CardDealer playerDealer;
-    /// <summary>
-    /// The Dealer AI
-    /// </summary>
-    public DealerIntelligence dealerAI;
 
     /// <summary>
     /// A reference to the Blackjack Canvas, should be one in scene
@@ -35,10 +31,9 @@ public class ActionsMenu : MonoBehaviour
     /// </summary>
     public void Hit()
     {
-        playerDealer.DealCard();
         bjc.ToggleActionButtons();
         bjc.turnStatus.text = "Dealer's Turn";
-        dealerAI.TakeTurn();
+        playerDealer.DealCard();
     }
 
     //TODO: STAND - End turn, do not take card, if twice in row then finish

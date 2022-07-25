@@ -26,18 +26,39 @@ public class DealerIntelligence : MonoBehaviour
     /// The amount the dealer will be pushed by
     /// </summary>
     public float pushAmount = 0.5f;
-
+    
     /// <summary>
     /// The score the dealer currently has
     /// </summary>
     private int dealerScore;
+    /// <summary>
+    /// The starting position of the dealer
+    /// </summary>
+    private Vector3 startingPos;
     #endregion
 
-    //TODO: Dealer Take Turn
+    private void Start()
+    {
+        startingPos = transform.position;
+    }
+
+    /// <summary>
+    /// The Dealer AI takes it's turn
+    /// </summary>
     public void TakeTurn()
     {
+        Debug.Log("Dealer takes turn", gameObject);
         dealerLight.SetActive(true);
         StartCoroutine(DealerDrawCard());
+    }
+
+    /// <summary>
+    /// Resets key values in the dealer AI
+    /// </summary>
+    public void ResetAI()
+    {
+        transform.position = startingPos;
+        dealerScore = 0;
     }
 
     /// <summary>

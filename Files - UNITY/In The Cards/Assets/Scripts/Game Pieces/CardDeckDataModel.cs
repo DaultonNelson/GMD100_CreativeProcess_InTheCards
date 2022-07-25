@@ -78,6 +78,20 @@ public class CardDeckDataModel
         return output;
     }
 
+    /// <summary>
+    /// Adds a list of used cards back into the deck
+    /// </summary>
+    /// <param name="usedCards">
+    /// A collection of cards to put into the bottom of the deck
+    /// </param>
+    public void AddUsedCards(List<string> usedCards)
+    {
+        foreach (string card in usedCards)
+        {
+            deckContents.Enqueue(card);
+        }
+    }
+
     public override string ToString()
     {
         StringBuilder output = new StringBuilder();
